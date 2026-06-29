@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
@@ -7,6 +7,8 @@ const APP_LINKS = {
   "Google Play": "https://play.google.com/store/apps/details?id=listok.levita",
   AppGallery: "https://appgallery.huawei.com/#/app/C113866449",
 };
+
+const WEBSITE_URL = "https://an9908.listok.online";
 
 const changes = [
   {
@@ -72,6 +74,45 @@ const steps = [
   { title: "Введите e-mail", text: "На него придёт электронный чек.", image: "/assets/app/email.png", alt: "Поле e-mail для электронного чека" },
   { title: "Нажмите «Оплатить»", text: "Проверьте сумму и подтвердите действие.", image: "/assets/app/pay.png", alt: "Кнопка оплаты тарифа в приложении LEVITA" },
   { title: "Перейдите к оплате", text: "Приложение откроет защищённую страницу оплаты. Дальше следуйте подсказкам на экране." },
+];
+
+const websiteSteps = [
+  {
+    title: "Нажмите «Войти»",
+    text: "Откройте сайт и нажмите «Войти» в правом верхнем углу.",
+    image: "/assets/website/step-01-login.png",
+    alt: "Кнопка Войти на сайте LEVITA",
+  },
+  {
+    title: "Авторизуйтесь",
+    text: "Введите номер телефона и пароль. Если пароля ещё нет, выберите «Получить пароль».",
+    image: "/assets/website/step-02-auth.png",
+    alt: "Окно авторизации на сайте LEVITA",
+  },
+  {
+    title: "Откройте абонементы",
+    text: "После входа выберите в верхнем меню пункт «Купить абонемент».",
+    image: "/assets/website/step-03-menu.png",
+    alt: "Пункт Купить абонемент в меню сайта",
+  },
+  {
+    title: "Выберите подходящий тариф",
+    text: "Найдите нужное количество занятий и срок участия, затем нажмите «Купить».",
+    image: "/assets/website/step-04-tariffs.png",
+    alt: "Список тарифов на сайте LEVITA",
+  },
+  {
+    title: "Проверьте условия и введите e-mail",
+    text: "Проверьте название тарифа, стоимость и членский взнос. Укажите e-mail для электронного чека.",
+    image: "/assets/website/step-05-email.png",
+    alt: "Оформление абонемента и поле электронной почты",
+  },
+  {
+    title: "Подтвердите покупку",
+    text: "Проверьте итоговую сумму и условия подписки, затем нажмите «Купить». Сайт переведёт вас к оплате.",
+    image: "/assets/website/step-06-buy.png",
+    alt: "Итоговая сумма и кнопка Купить",
+  },
 ];
 
 function ArrowIcon({ direction = "right" }) {
@@ -266,8 +307,84 @@ function StoreCard({ store, href }) {
   );
 }
 
+function WebsiteCard({ onOpen }) {
+  return (
+    <button className="store-card store-card--website" type="button" onClick={onOpen}>
+      <img src="/assets/website/qr_website.png" alt="QR-код для оформления на сайте" />
+      <span><strong>Оформить на сайте</strong><small>Открыть пошаговую инструкцию</small></span>
+      <ArrowIcon />
+    </button>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg className="icon-close" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
+function WebsiteGuideModal({ onClose }) {
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [onClose]);
+
+  return (
+    <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+      <section className="website-modal" role="dialog" aria-modal="true" aria-labelledby="website-guide-title" onMouseDown={(event) => event.stopPropagation()}>
+        <header className="website-modal__header">
+          <div>
+            <span className="modal-kicker">Оформление через сайт</span>
+            <h2 id="website-guide-title">Подписка — шаг за шагом</h2>
+          </div>
+          <button className="modal-close" type="button" onClick={onClose} aria-label="Закрыть инструкцию"><CloseIcon /></button>
+        </header>
+
+        <div className="website-modal__body">
+          <div className="website-modal__intro">
+            <p>Весь процесс займёт несколько минут. Откройте сайт LEVITA и двигайтесь по шагам ниже.</p>
+            <a className="button" href={WEBSITE_URL} target="_blank" rel="noreferrer">Открыть сайт <ArrowIcon /></a>
+          </div>
+
+          <div className="website-steps">
+            {websiteSteps.map((item, index) => (
+              <article className="website-step" key={item.title}>
+                <div className="website-step__copy">
+                  <span className="number">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <a href={item.image} target="_blank" rel="noreferrer">Увеличить скриншот</a>
+                </div>
+                <a className="website-step__visual" href={item.image} target="_blank" rel="noreferrer" aria-label={`Увеличить скриншот: ${item.title}`}>
+                  <img src={item.image} alt={item.alt} loading="lazy" />
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <div className="website-modal__finish">
+            <div><h3>Можно оформлять</h3><p>После нажатия «Купить» следуйте подсказкам на защищённой странице оплаты.</p></div>
+            <a className="button" href={WEBSITE_URL} target="_blank" rel="noreferrer">Перейти к оформлению <ArrowIcon /></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function AppGuide() {
   const [activeStep, setActiveStep] = useState(0);
+  const [websiteGuideOpen, setWebsiteGuideOpen] = useState(false);
   const step = steps[activeStep];
   const go = (next) => setActiveStep((current) => (current + next + steps.length) % steps.length);
   return (
@@ -275,7 +392,10 @@ function AppGuide() {
       <div className="container">
         <div className="app-intro">
           <div><h2>Твоя студия теперь в телефоне</h2><p>Расписание, личный кабинет, индивидуальный план и оформление тарифа — в приложении LEVITA.</p></div>
-          <div className="store-list">{Object.entries(APP_LINKS).map(([store, href]) => <StoreCard store={store} href={href} key={store} />)}</div>
+          <div className="store-list">
+            {Object.entries(APP_LINKS).map(([store, href]) => <StoreCard store={store} href={href} key={store} />)}
+            <WebsiteCard onOpen={() => setWebsiteGuideOpen(true)} />
+          </div>
         </div>
 
         <div className="guide-heading"><div><h2>Оформление — всего несколько шагов</h2><p>Сначала выберите Краснодар и филиал «Мачуги, 4».</p></div><span>Шаг {activeStep + 1} из {steps.length}</span></div>
@@ -297,6 +417,7 @@ function AppGuide() {
           </div>
         </div>
       </div>
+      {websiteGuideOpen ? <WebsiteGuideModal onClose={() => setWebsiteGuideOpen(false)} /> : null}
     </section>
   );
 }
