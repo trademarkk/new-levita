@@ -129,15 +129,10 @@ h3 { font-size: 22px; line-height: 1.15; }
 .rules-section { background: var(--white); }
 .rules-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; align-items: start; }
 .rules-copy p { margin-top: 18px; }
-.rules-details { border-top: 1px solid var(--line); }
-.rules-details summary { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; cursor: pointer; font-weight: 700; list-style: none; }
-.rules-details summary::-webkit-details-marker { display: none; }
-.summary-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: var(--gold); transition: transform 180ms ease; }
-.rules-details[open] .summary-icon { transform: rotate(90deg); }
-.rules-details ol { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; padding: 0 0 8px; list-style: none; }
-.rules-details li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 17px; border-radius: 16px; background: var(--ice); }
-.rules-details li span { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--gold); font-size: 11px; font-weight: 700; }
-.rules-details li p { font-size: 13px; line-height: 1.45; }
+.rules-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.rules-list li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 17px; border-radius: 16px; background: var(--ice); }
+.rules-list li span { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--gold); font-size: 11px; font-weight: 700; }
+.rules-list li p { font-size: 13px; line-height: 1.45; }
 
 .app-section { background: var(--ice); }
 .app-intro { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 72px; align-items: center; }
@@ -247,7 +242,7 @@ h3 { font-size: 22px; line-height: 1.15; }
   .tariff-grid, .term-grid { grid-template-columns: 1fr; }
   .tariff-card { min-height: 205px; }
   .trial-banner { align-items: start; flex-direction: column; }
-  .rules-details ol { grid-template-columns: 1fr; }
+  .rules-list { grid-template-columns: 1fr; }
   .guide-heading { display: grid; gap: 10px; margin-top: 80px; }
   .step-picker { grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .step-picker button { min-width: 0; }

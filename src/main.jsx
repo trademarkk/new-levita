@@ -287,10 +287,9 @@ function Rules() {
     <section className="section rules-section" id="rules">
       <div className="container rules-wrap">
         <div className="rules-copy"><h2>Главное о вашем тарифе</h2><p>Все важные условия — коротко и без мелкого шрифта.</p></div>
-        <details className="rules-details">
-          <summary>Показать 8 важных правил <span className="summary-icon"><ArrowIcon /></span></summary>
-          <ol>{rules.map((rule, index) => <li key={rule}><span>{String(index + 1).padStart(2, "0")}</span><p>{rule}</p></li>)}</ol>
-        </details>
+        <ol className="rules-list" aria-label="Важные правила тарифа">
+          {rules.map((rule, index) => <li key={rule}><span>{String(index + 1).padStart(2, "0")}</span><p>{rule}</p></li>)}
+        </ol>
       </div>
     </section>
   );
