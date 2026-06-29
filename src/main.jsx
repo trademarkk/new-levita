@@ -168,7 +168,6 @@ function Hero() {
             <a className="button" href="#changes">Узнать, что изменилось <ArrowIcon /></a>
             <a className="text-link" href="#tariffs">Перейти к тарифам</a>
           </div>
-          <p className="hero-note"><strong>Пробное занятие — бесплатно.</strong> Познакомьтесь с клубом и тренером без оплаты.</p>
         </div>
         <div className="phone-scene" aria-label="Приложение LEVITA">
           <div className="phone">
@@ -254,7 +253,6 @@ function Tariffs() {
           })}
         </div>
         <div className="tariff-selection" aria-live="polite">Выбран ритм: <strong>{tariffs.find((tariff) => tariff.id === selected)?.pace}</strong></div>
-        <div className="trial-banner"><div><h3>Пробное занятие — бесплатно</h3><p>Познакомьтесь с клубом и тренером без оплаты.</p></div><a className="text-link" href="#app">Как оформить тариф <ArrowIcon /></a></div>
       </div>
     </section>
   );

@@ -55,8 +55,6 @@ h3 { font-size: 22px; line-height: 1.15; }
 .hero h1 { max-width: 720px; font-size: clamp(52px, 6.2vw, 88px); line-height: 0.98; letter-spacing: -0.052em; }
 .hero-copy > p { max-width: 590px; margin-top: 28px; font-size: 20px; }
 .hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 34px; }
-.hero-note { padding-top: 26px; border-top: 1px solid var(--line); font-size: 15px !important; }
-.hero-note strong { color: var(--navy); }
 .hero-orb { position: absolute; border-radius: 999px; pointer-events: none; }
 .hero-orb--left { width: 380px; height: 380px; top: -100px; left: -245px; background: var(--gold); }
 .hero-orb--right { width: 470px; height: 470px; right: -270px; bottom: -190px; background: var(--gold-soft); }
@@ -109,9 +107,6 @@ h3 { font-size: 22px; line-height: 1.15; }
 .tariff-card.is-selected .tariff-visits, .tariff-card.is-selected .tariff-per { color: #d3dde2; }
 .tariff-selection { margin-top: 20px; color: var(--gray); font-size: 14px; text-align: center; }
 .tariff-selection strong { color: var(--navy); }
-.trial-banner { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 44px; padding: 30px 34px; border-radius: 22px; background: var(--gold-soft); }
-.trial-banner h3 { font-size: 27px; }
-.trial-banner p { margin-top: 7px; font-size: 14px; }
 
 .term-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .term-card { min-height: 300px; padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--white); }
@@ -223,7 +218,6 @@ h3 { font-size: 22px; line-height: 1.15; }
   .hero h1 { font-size: clamp(48px, 14vw, 68px); }
   .hero-copy > p { font-size: 18px; }
   .hero-actions { align-items: start; flex-direction: column; }
-  .hero-note { margin-top: 28px !important; }
   .phone-scene { min-height: 530px; margin-top: 16px; }
   .phone { width: 262px; height: 520px; transform: rotate(2deg); }
   .hero-orb--left { width: 260px; height: 260px; top: 430px; left: -190px; }
@@ -241,7 +235,6 @@ h3 { font-size: 22px; line-height: 1.15; }
   .membership h3 { font-size: 25px; }
   .tariff-grid, .term-grid { grid-template-columns: 1fr; }
   .tariff-card { min-height: 205px; }
-  .trial-banner { align-items: start; flex-direction: column; }
   .rules-list { grid-template-columns: 1fr; }
   .guide-heading { display: grid; gap: 10px; margin-top: 80px; }
   .step-picker { grid-template-columns: repeat(4, 1fr); gap: 8px; }
