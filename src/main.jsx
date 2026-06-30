@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import "./styles.css";
 
 const APP_LINKS = {
@@ -434,7 +435,7 @@ function Footer() {
 }
 
 function App() {
-  return <><Header /><main><Hero /><Changes /><PaymentModel /><Tariffs /><Terms /><Rules /><AppGuide /></main><Footer /></>;
+  return <><Header /><main><Hero /><Changes /><PaymentModel /><Tariffs /><Terms /><Rules /><AppGuide /></main><Footer /><Analytics /></>;
 }
 
 createRoot(document.getElementById("root")).render(<App />);
